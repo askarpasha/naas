@@ -36,20 +36,25 @@
                     <!-- Footer Top End -->
                 </div>
             </div>
+
             <div class="row mb-n30">
 
                 <!-- Footer Widget Start -->
                 <div class="col-lg-3 col-md-4 col-sm-6 col-12 mb-30 wow fadeIn" data-wow-duration="1.5s" data-wow-delay=".1s">
-                    <div class="footer-widget negative-margin">
+                <?php
+                     $footer_column_one = get_field('footer_column_one','options');
+                     if( $footer_column_one ): ?>
+               
+                        <div class="footer-widget negative-margin">
                         <div class="logo">
                             <a href="#">
-                                <img src="https://naasdigital.com/wp-content/uploads/2022/06/logo-black-1.png" alt="" width="120">
+                                <img src="<?php echo $footer_column_one['logo']; ?>" alt="" width="120">
                             </a>
                         </div>
                         <ul class="footer-widget-list-icon">
-                            <li><i class="fas fa-map-marker-alt"></i> <span> Lorem Ipsum <br> Dummy data</span></li>
-                            <li><i class="fas fa-envelope"></i> <span>hello@naasdigital.com</span> </li>
-                            <li><i class="fas fa-phone"></i><span>+123 456 7890</span> </li>
+                            <li><i class="fas fa-map-marker-alt"></i> <span><?php echo $footer_column_one['address']; ?></span></li>
+                            <li><i class="fas fa-envelope"></i> <span><?php echo $footer_column_one['email']; ?></span> </li>
+                            <li><i class="fas fa-phone"></i><span>+<?php echo $footer_column_one['mobile_number']; ?></span> </li>
                         </ul>
                         <ul class="social-icon d-flex flex-start">
                             <li>
@@ -66,12 +71,35 @@
                             </li>
                         </ul>
                     </div>
+            
+               
+                
+            <?php endif; ?>
+                
                 </div>
                 <!-- Footer Widget End -->
 
                 <!-- Footer Widget Start -->
                 <div class="col-lg-3 col-md-4 col-sm-6 col-12 mb-30 d-flex justify-content-lg-center justify-content-sm-end wow fadeIn" data-wow-duration="1.5s" data-wow-delay=".1s">
-                    <div class="footer-widget">
+                <?php
+                     $footer_column_two = get_field('footer_column_two','options');
+                     if( $footer_column_two ): ?>
+                        
+                        <div class="footer-widget">
+                        <h5 class="footer-widget-title"><?php echo $footer_column_two['column_title']; ?></h5>
+                        <ul class="footer-widget-list">
+                            <li><a href="#"><?php echo $footer_column_two['service_one']; ?></a></li>
+                            <li><a href="#"><?php echo $footer_column_two['service_two']; ?></a></li>
+                            <li><a href="#"><?php echo $footer_column_two['service_three']; ?></a></li>
+                            <li><a href="#"><?php echo $footer_column_two['service_four']; ?></a></li>
+                            <li><a href="#"><?php echo $footer_column_two['service_five']; ?></a></li>
+                        </ul>
+                    </div>
+                    <?php endif; ?>   
+                </div>
+                 
+                
+                <!-- <div class="footer-widget">
                         <h5 class="footer-widget-title">Service</h5>
                         <ul class="footer-widget-list">
                             <li><a href="#">Web Design</a></li>
@@ -81,20 +109,25 @@
                             <li><a href="#">Photogaphy</a></li>
                         </ul>
                     </div>
-                </div>
+                </div> -->
                 <!-- Footer Widget End -->
 
                 <!-- Footer Widget Start -->
                 <div class="col-lg-3 col-md-4 col-sm-5 col-12 mb-30 d-flex justify-content-lg-center justify-content-md-end wow fadeIn" data-wow-duration="1.5s" data-wow-delay=".1s">
                     <div class="footer-widget">
                         <h5 class="footer-widget-title">Quick Links</h5>
-                        <ul class="footer-widget-list">
-                            <li><a href="#">About us</a></li>
-                            <li><a href="#">History</a></li>
-                            <li><a href="#">Support</a></li>
-                            <li><a href="#">Contact</a></li>
-                            <li><a href="#">Refund</a></li>
-                        </ul>
+                        <?php
+                                        wp_nav_menu(
+                                            array(
+                                                'theme_location' => 'footer-menu',
+                                                'container' => 'ul',
+                                                'menu_class' => 'footer-widget-list',
+                                                
+
+                                            )
+                                            );
+                                        ?>
+                        
                     </div>
                 </div>
                 <!-- Footer Widget End -->
@@ -160,14 +193,24 @@
             </div>
             <div class="row">
                 <div class="col-12">
-                    <div class="copyright wow fadeIn" data-wow-duration="1.5s" data-wow-delay=".1s">
-                        <p class="order-md-1 order-2">NAAS Digital © 2022</p>
+
+
+                <?php
+                     $footer_copyright = get_field('footer_copyright','options');
+                     if( $footer_copyright ): ?>
+                        
+                        <div class="copyright wow fadeIn" data-wow-duration="1.5s" data-wow-delay=".1s">
+                        <p class="order-md-1 order-2"><?php echo $footer_copyright['company_name']; ?></p>
 
                         <ul class="footer-bootm-list order-md-2 order-1">
-                            <li><a href="#">Terms & Condition</a></li>
-                            <li><a href="#">Privecy Policy</a></li>
+                            <li><a href="#"><?php echo $footer_copyright['link_one_text']; ?></a></li>
+                            <li><a href="#"><?php echo $footer_copyright['link_two_text']; ?></a></li>
                         </ul>
                     </div>
+                    <?php endif; ?>  
+
+
+                    
                 </div>
             </div>
         </div>

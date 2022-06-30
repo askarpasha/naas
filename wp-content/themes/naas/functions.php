@@ -98,6 +98,7 @@
     add_action('wp_enqueue_scripts', 'addjs');
 
     add_theme_support('menus');
+    add_theme_support('widgets');
 
     
  
@@ -105,13 +106,14 @@
 
         array(
             'top-menu' => __('Top Menu', 'theme'),
+            'footer-menu' => __('Footer Menu', 'theme',)
             
         )
         );
 
         function naas_custom_logo_setup() {
             $defaults = array(
-                'height'               => 33.28,
+                'height'               => 33,
                 'width'                => 120,
                 'flex-height'          => true,
                 'flex-width'           => true,
@@ -124,3 +126,24 @@
     
         add_action( 'after_setup_theme', 'naas_custom_logo_setup' );
     
+
+
+            if( function_exists('acf_add_options_page') ) {
+	
+                acf_add_options_page(array(
+                    'page_title' 	=> 'Theme General Settings',
+                    'menu_title'	=> 'Theme Settings',
+                    'menu_slug' 	=> 'theme-general-settings',
+                    'capability'	=> 'edit_posts',
+                    'redirect'		=> false
+                ));
+                
+               
+                
+                acf_add_options_sub_page(array(
+                    'page_title' 	=> 'Theme Footer Settings',
+                    'menu_title'	=> 'Footer',
+                    'parent_slug'	=> 'theme-general-settings',
+                ));
+                
+            }

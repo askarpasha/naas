@@ -13,19 +13,19 @@
 <div class="swiper sliderone animation-style-01">
     <div class="swiper-wrapper">
     <?php
-if (have_rows('hero_repeater')):;
-?>
+    if (have_rows('hero_repeater')):;
+    ?>
 
-<?php while(have_rows('hero_repeater')) : the_row();
+    <?php while(have_rows('hero_repeater')) : the_row();
 
-$subtitle = get_sub_field('sub_title');
-$title = get_sub_field('title');
-$text = get_sub_field('text');
-$buttonlink = get_sub_field('button_link');
-$buttontext = get_sub_field('button_text');
-$imageone = get_sub_field('image_one');
-$imagetwo = get_sub_field('image_two');
-?>
+    $subtitle = get_sub_field('sub_title');
+    $title = get_sub_field('title');
+    $text = get_sub_field('text');
+    $buttonlink = get_sub_field('button_link');
+    $buttontext = get_sub_field('button_text');
+    $imageone = get_sub_field('image_one');
+    $imagetwo = get_sub_field('image_two');
+    ?>
 
 <div class="swiper-slide ">
             <!-- Single Slider Start -->
@@ -159,80 +159,55 @@ $imagetwo = get_sub_field('image_two');
     <div class="row">
         <div class="col-12">
             <div class="section-head wow fadeIn" data-wow-duration="1.5s" data-wow-delay=".1s">
-                <span class="subtitle">Portfolio</span>
-                <h2 class="title">Our Amazing Works</h2>
-                <p class="text">Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. when the musics over turnoff the light</p>
-            </div>
+            <?php
+            $portfolio_title = get_field('portfolio_title');
+            if( $portfolio_title ): ?>
+               
+                <span class="subtitle"><?php echo $portfolio_title['sub_title']; ?></span>
+                <h2 class="title"><?php echo $portfolio_title['title']; ?></h2>
+                <p class="text"><?php echo $portfolio_title['text']; ?></p>
+            
+               
+                
+            <?php endif; ?>
+                </div>
         </div>
     </div>
     <div class="row">
         <div class="col-12">
             <div class="swiper portfolio-carousel parent-gallery">
                 <div class="swiper-wrapper">
+                <?php
+                if (have_rows('portfolio')):;
+                ?>
+
+                <?php while(have_rows('portfolio')) : the_row();
+
+                $subtitle = get_sub_field('sub_title');
+                $title = get_sub_field('title');
+                $image = get_sub_field('image');
+                
+                ?>
                     <div class="swiper-slide">
-                        <div class="single-portfolio-carousel single-portfolio">
+                        <div class=" single-portfolio">
                             <a class="thumbnail" href="#">
-                                <img src="<?php bloginfo('template_directory');?> /assets/images/portfolio/portfolio-7.png" alt="">
+                                <img src="<?php echo $image; ?>" alt="">
                             </a>
                             <div class="content">
-                                <span class="subtitle">Web Design</span>
+                                <span class="subtitle"><?php echo $subtitle; ?></span>
                                 <h3 class="title">
-                                    <a href="#">When the musics over turn off the light</a>
+                                    <a href="#"><?php echo $title; ?></a>
                                 </h3>
                             </div>
                             <div class="lightbox">
-                                <a class="item" href="<?php bloginfo('template_directory');?> /assets/images/portfolio/portfolio-7.png"><i class="fas fa-external-link-alt"></i></a>
+                                <a class="item" href="<?php echo $image; ?>"><i class="fas fa-external-link-alt"></i></a>
                             </div>
                         </div>
                     </div>
-                    <div class="swiper-slide">
-                        <div class="single-portfolio-carousel single-portfolio">
-                            <a class="thumbnail" href="#">
-                                <img src="<?php bloginfo('template_directory');?> /assets/images/portfolio/portfolio-8.png" alt="">
-                            </a>
-                            <div class="content">
-                                <span class="subtitle">Development</span>
-                                <h3 class="title">
-                                    <a href="#">When the musics over turn off the light</a>
-                                </h3>
-                            </div>
-                            <div class="lightbox">
-                                <a class="item" href="#"><i class="fas fa-external-link-alt"></i></a>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="swiper-slide">
-                        <div class="single-portfolio-carousel single-portfolio">
-                            <a class="thumbnail" href="#">
-                                <img src="<?php bloginfo('template_directory');?> /assets/images/portfolio/portfolio-9.png" alt="">
-                            </a>
-                            <div class="content">
-                                <span class="subtitle">Marketing</span>
-                                <h3 class="title">
-                                    <a href="#">When the musics over turn off the light</a>
-                                </h3>
-                            </div>
-                            <div class="lightbox">
-                                <a class="item" href="<?php bloginfo('template_directory');?> /assets/images/portfolio/portfolio-9.png"><i class="fas fa-external-link-alt"></i></a>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="swiper-slide">
-                        <div class="single-portfolio-carousel single-portfolio">
-                            <a class="thumbnail" href="#">
-                                <img src="<?php bloginfo('template_directory');?> /assets/images/portfolio/portfolio-8.png" alt="">
-                            </a>
-                            <div class="content">
-                                <span class="subtitle">Photogaphy</span>
-                                <h3 class="title">
-                                    <a href="#">When the musics over turn off the light</a>
-                                </h3>
-                            </div>
-                            <div class="lightbox">
-                                <a class="item" href="<?php bloginfo('template_directory');?> /assets/images/portfolio/portfolio-8.png"><i class="fas fa-external-link-alt"></i></a>
-                            </div>
-                        </div>
-                    </div>
+                   
+                    <?php endwhile; ?>
+                    <?php endif; ?>
+       
                 </div>
                 <!--== Add Swiper navigation Buttons ==-->
                 <div class="portfolio-swiper-arrow">
@@ -266,13 +241,36 @@ $imagetwo = get_sub_field('image_two');
                 <div class="testimonial-inner">
                     <!-- Section Title Start -->
                     <div class="section-title-center section-head">
-                        <span class="subtitle">Testimonials</span>
-                        <h2 class="title">What People Say</h2>
+                    <?php
+                     $testimonial_title = get_field('testimonial_title');
+                     if( $testimonial_title ): ?>
+                        
+                        <span class="subtitle"><?php echo $testimonial_title['sub_title']; ?></span>
+                        <h2 class="title"><?php echo $testimonial_title['title']; ?></h2>
+                        
+                        
+                         
+                     <?php endif; ?>
+                       
                     </div>
                     <!-- Section Title End  -->
 
                     <div class="swiper testimonialone">
                         <div class="swiper-wrapper">
+                        <?php
+                          if (have_rows('testimonials')):;
+                          ?>
+
+                          <?php while(have_rows('testimonials')) : the_row();
+
+                          $text = get_sub_field('text');
+                          $avatar = get_sub_field('avatar');
+                          $person_name = get_sub_field('person_name');
+                          $job_role = get_sub_field('job_role');
+                       
+                          ?>
+
+
                             <div class="swiper-slide">
                                 <!--== Start Testimonial Item ==-->
                                 <div class="testimonial-single">
@@ -280,31 +278,20 @@ $imagetwo = get_sub_field('image_two');
                                         <img src="<?php bloginfo('template_directory');?> /assets/images/quote/quote-2.png" alt="Quote">
                                     </div>
                                     <div class="testimonial-single-content">
-                                        <p class="client-text">Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. when the musics over turno ff the light says the great Jim.</p>
+                                        <p class="client-text"><?php echo $text; ?></p>
                                         <div class="client-info">
-                                            <img src="<?php bloginfo('template_directory');?> /assets/images/testimonial/testimonial-one.png" alt="">
-                                            <h4 class="name">John Doe, <span class="designation">Web Developer</span></h4>
+                                            <img src="<?php echo $avatar; ?>" alt="">
+                                            <h4 class="name"><?php echo $person_name; ?>, <span class="designation"><?php echo $job_role; ?></span></h4>
                                         </div>
                                     </div>
                                 </div>
                                 <!--== End Testimonial Item ==-->
                             </div>
-                            <div class="swiper-slide">
-                                <!--== Start Testimonial Item ==-->
-                                <div class="testimonial-single">
-                                    <div class="testimonial-single-quote">
-                                        <img src="<?php bloginfo('template_directory');?> /assets/images/quote/quote-2.png" alt="Quote">
-                                    </div>
-                                    <div class="testimonial-single-content">
-                                        <p class="client-text">Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. when the musics over turno ff the light says the great Jim.</p>
-                                        <div class="client-info">
-                                            <img src="<?php bloginfo('template_directory');?> /assets/images/testimonial/testimonial-one.png" alt="">
-                                            <h4 class="name">John Doe, <span class="designation">Web Developer</span></h4>
-                                        </div>
-                                    </div>
-                                </div>
-                                <!--== End Testimonial Item ==-->
-                            </div>
+
+                            
+                    <?php endwhile; ?>
+                    <?php endif; ?>
+                            
                         </div>
 
                         <!--== Add Swiper navigation Buttons ==-->

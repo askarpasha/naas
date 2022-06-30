@@ -96,3 +96,31 @@
     }
 
     add_action('wp_enqueue_scripts', 'addjs');
+
+    add_theme_support('menus');
+
+    
+ 
+    register_nav_menus(
+
+        array(
+            'top-menu' => __('Top Menu', 'theme'),
+            
+        )
+        );
+
+        function naas_custom_logo_setup() {
+            $defaults = array(
+                'height'               => 33.28,
+                'width'                => 120,
+                'flex-height'          => true,
+                'flex-width'           => true,
+                // 'header-text'          => array( 'site-title', 'site-description' ),
+                // 'unlink-homepage-logo' => true, 
+            );
+         
+            add_theme_support( 'custom-logo', $defaults );
+        }
+    
+        add_action( 'after_setup_theme', 'naas_custom_logo_setup' );
+    

@@ -24,9 +24,22 @@
                     <div class="col-12">
                         <div class="flex-center justify-content-between">
                             <!-- Header Logo Start -->
+                            <?php
+                            // $logoimage = get_custom_logo();
+                            
+                            ?>
                             <div class="logo">
-                                <a href="index#">
-                                    <img src="https://naasdigital.com/wp-content/uploads/2022/06/logo-black-1.png" width="120" alt="">
+                                <a href="#">
+                                <?php
+                            $custom_logo_id = get_theme_mod( 'custom_logo' );
+                            $logo = wp_get_attachment_image_src( $custom_logo_id , 'full' );
+                            if ( has_custom_logo() ) {
+                                    echo '<img src="' . esc_url( $logo[0]) . '" alt="' . get_bloginfo( 'name' ) . '">';
+                            } else {
+                                    echo '<h1>'. get_bloginfo( 'name' ) .'</h1>';
+                            }
+                            ?>
+                            
                                 </a>
                             </div>
                             <!-- Header Logo End -->
@@ -35,7 +48,17 @@
                                 <!-- Header Menu Start -->
                                 <div class="d-none d-lg-flex header-right_menu">
                                     <nav class="main-menu">
-                                        <ul>
+                                        <?php
+                                        wp_nav_menu(
+                                            array(
+                                                'theme_location' => 'top-menu',
+                                                'container' => 'ul',
+                                                
+
+                                            )
+                                            );
+                                        ?>
+                                        <!-- <ul>
                                             <li>
                                                 <a href="#">Home</a>
                                                
@@ -53,7 +76,7 @@
                                                 
                                             </li>
                                             <li><a href="#">Contact</a></li>
-                                        </ul>
+                                        </ul> -->
                                     </nav>
                                 </div>
                                 <!-- Header Menu End -->
